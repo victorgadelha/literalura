@@ -61,8 +61,19 @@ public class ScannerService {
             case 3:
                 List<Author> authors = authorService.findAll();
                 System.out.println(authors);
+                break;
             default:
-
+            case 4:
+                System.out.println("Digite o ano que deseja pesquisar:");
+                int year = scanner.nextInt();
+                List<Author> aliveAuthorsInYear = authorService.findAliveAuthorsInYear(year);
+                System.out.println(aliveAuthorsInYear);
+                break;
+            case 5:
+                System.out.println("Digite o idioma que deseja pesquisar:");
+                String language = scanner.nextLine();
+                List<Book> booksByLanguage = bookService.findBooksByLanguage(language);
+                System.out.println(booksByLanguage);
                 break;
         }
         scanner.close();

@@ -21,4 +21,8 @@ public class BookService {
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
+
+    public List<Book> findBooksByLanguage(String language) {
+        return bookRepository.findBooksByLanguage(language);
+    }
 }
