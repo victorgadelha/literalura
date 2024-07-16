@@ -32,50 +32,72 @@ public class ScannerService {
     BookService bookService;
 
     public void getScanner() throws IOException, InterruptedException {
-
-        System.out.println("Digite a opção 1");
         Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice;
 
-        switch (choice) {
-            case 1:
-                System.out.println("Insira o nome do livro que deseja procurar:");
-                String title;
-                title = scanner.nextLine();
+        do {
+            printMenu();
+            choice = scanner.nextInt();
+            scanner.nextLine();
 
-                BookDTO bookDTO = apiService.getApi(title);
+            switch (choice) {
+                case 1:
+                    System.out.println("Insira o nome do livro que deseja procurar:");
+                    String title;
+                    title = scanner.nextLine();
 
-                Book book = new Book(bookDTO.title(), bookDTO.authors(), bookDTO.languages(), bookDTO.downloadTotal());
+                    BookDTO bookDTO = apiService.getApi(title);
 
-                bookService.save(book);
+                    Book book = new Book(bookDTO.title(), bookDTO.authors(), bookDTO.languages(),
+                            bookDTO.downloadTotal());
 
-                System.out.println("book ==>> " + book);
-                System.out.println("Livro salvo com sucesso!");
+                    bookService.save(book);
 
-                break;
-            case 2:
-                List<Book> books = bookService.findAll();
-                System.out.println(books);
-                break;
-            case 3:
-                List<Author> authors = authorService.findAll();
-                System.out.println(authors);
-                break;
-            default:
-            case 4:
-                System.out.println("Digite o ano que deseja pesquisar:");
-                int year = scanner.nextInt();
-                List<Author> aliveAuthorsInYear = authorService.findAliveAuthorsInYear(year);
-                System.out.println(aliveAuthorsInYear);
-                break;
-            case 5:
-                System.out.println("Digite o idioma que deseja pesquisar:");
-                String language = scanner.nextLine();
-                List<Book> booksByLanguage = bookService.findBooksByLanguage(language);
-                System.out.println(booksByLanguage);
-                break;
-        }
+                    System.out.println(book);
+                    System.out.println("Livro salvo com sucesso!");
+                    break;
+
+                case 2:
+                    List<Book> books = bookService.findAll();
+                    System.out.println(books);
+                    break;
+
+                case 3:
+                    List<Author> authors = authorService.findAll();
+                    System.out.println(authors);
+                    break;
+
+                case 4:
+                    System.out.println("Digite o ano que deseja pesquisar:");
+                    int year = scanner.nextInt();
+                    List<Author> aliveAuthorsInYear = authorService.findAliveAuthorsInYear(year);
+                    System.out.println(aliveAuthorsInYear);
+                    break;
+                case 5:
+                    System.out.println("Digite o idioma que deseja pesquisar:");
+                    String language = scanner.nextLine();
+                    List<Book> booksByLanguage = bookService.findBooksByLanguage(language);
+                    System.out.println(booksByLanguage);
+                    break;
+                case 0:
+                    System.out.println("Obrigado por visitar o LiterAlura!");
+                    break;
+                default:
+                    System.out.println("Escolha uma opção válida!");
+            }
+        } while (choice != 0);
         scanner.close();
+        System.out.println("Programa encerrado.");
+    }
+
+    private void printMenu() {
+        System.out.println("\n=== MENU ===");
+        System.out.println("1. Buscar livro por título");
+        System.out.println("2. Listar todos os livros");
+        System.out.println("3. Listar todos os autores");
+        System.out.println("4. Buscar autores por ano de nascimento");
+        System.out.println("5. Buscar livros por idioma");
+        System.out.println("0. Sair do programa");
+        System.out.print("Escolha uma opção: ");
     }
 }

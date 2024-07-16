@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import br.com.victorgadelha.literalura.models.Author;
 
 public interface AuthorRepository extends JpaRepository<Author, Long> {
+
     @Query("SELECT a FROM Author a WHERE a.birth_year <= :year AND (a.death_year IS NULL OR a.death_year >= :year)")
     List<Author> findAliveAuthorsInYear(@Param("year") int year);
 
