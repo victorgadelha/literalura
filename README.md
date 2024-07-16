@@ -1,6 +1,10 @@
 # LiterAlura
 
-O LiterAlura é um sistema desenvolvido para o **Oracle One - Next Education** em parceria com a **Alura** em Spring Boot para gerenciar informações sobre livros disponibilizados pela API **Gutendex** que são aremazenadas em banco de dados. Permite a interação com o usuário através do console, oferecendo diversas funcionalidades para gerenciar livros e autores:
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6bb1ca66-8063-4571-9143-07d1943b4838" alt="badge literalura">
+</p>
+
+O LiterAlura é um sistema desenvolvido para o **Oracle One - Next Education** em parceria com a **Alura** para gerenciar informações sobre livros disponibilizados pela API **Gutendex** que são aremazenadas em banco de dados. Permite a interação com o usuário através do console, oferecendo diversas funcionalidades para gerenciar livros e autores:
 
 ## Funcionalidades
 
